@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Core.Entities.PortfoioItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div style="margin:120px  0  10px 20px">
+        <h1>Index</h1>
+
+        <p>
+            <a asp-action="Create"  class="btn btn-outline-dark">Create New</a>
+        </p>
+        
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descrption)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descrption)
+                    </td>
+                    <td>
+                        <img src="~/img/portfolio/@item.ImageUrl" class="img-thumbnail" style="width:100px;height:64px" />
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
